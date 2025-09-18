@@ -1,2 +1,4 @@
 kafka-python
 ruff
+fastapi
+uvicorn[standard]

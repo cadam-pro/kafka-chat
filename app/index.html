@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Kafka Chat</h1>
+  <div id="chat"></div>
+  <input id="msg" autocomplete="off"/><button onclick="send()">Send</button>
+  <script>
+    const ws = new WebSocket(`ws://localhost:8000/ws`);
+    ws.onmessage = e => {
+      const div = document.getElementById('chat');
+      div.innerHTML += `<p>${e.data}</p>`;
+    };
+    function send() {
+      const text = document.getElementById('msg').value;
+      ws.send(text);
+      document.getElementById('msg').value = '';
+    }
+  </script>
+</body>
+</html>
